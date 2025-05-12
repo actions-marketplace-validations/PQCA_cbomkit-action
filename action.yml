@@ -1,8 +1,16 @@
 name: 'CBOMkit-action'
 description: 'Generate CBOM from source code'
+author: 'PQCA'
+
+# Add your action's branding here. This will appear on the GitHub Marketplace.
+branding:
+  icon: box
+  color: blue
+
 outputs:
   pattern:
     description: 'CBOM file name pattern'
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
