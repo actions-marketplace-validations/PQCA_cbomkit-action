@@ -57,6 +57,10 @@ jobs:
         run: mvn clean package
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Replace Docker base image tag with release tag
+        if: github.event_name == 'release' && github.event.action == 'created'
+        run: |
+          sed -i "s|FROM ghcr.io/pqca/cbomkit-action:edge|FROM ghcr.io/pqca/cbomkit-action:${{ github.ref_name }}|" Dockerfile
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5
